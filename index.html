@@ -3,320 +3,252 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Miguel Angel Cifuentes León | Geógrafo · SIG · Python</title>
-  <meta name="description" content="Portafolio profesional de Miguel Angel Cifuentes León: Geógrafo y estudiante de Ingeniería de Sistemas, especialista en SIG, análisis espacial, Python y bases de datos." />
-  <meta name="theme-color" content="#0f172a" />
+  <title>Miguel Angel Cifuentes León · Geógrafo y Especialista SIG</title>
+  <meta name="description" content="Geógrafo (UNMSM) y estudiante de Ingeniería de Sistemas. SIG, análisis espacial, Python y bases de datos. Licencia A-I, piloto de dron y brigadista comunitario." />
+  <meta property="og:title" content="Miguel Angel Cifuentes León · Geógrafo y Especialista SIG" />
+  <meta property="og:description" content="SIG, análisis espacial, Python y bases de datos." />
+  <meta property="og:type" content="website" />
 
-  <!-- Aplica el tema guardado antes de pintar la página (evita parpadeo) -->
+  <!-- Aplica el modo guardado antes de pintar (evita parpadeo) -->
   <script>
     (function () {
-      try {
-        var saved = localStorage.getItem('theme');
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (saved === 'dark' || (!saved && prefersDark)) document.documentElement.classList.add('dark');
-      } catch (e) {}
+      try { if (localStorage.getItem('modo') === 'dark') document.documentElement.classList.add('dark'); } catch (e) {}
     })();
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-          colors: {
-            brand: { 50:'#ecfdf5', 100:'#d1fae5', 400:'#34d399', 500:'#10b981', 600:'#059669', 700:'#047857' },
-            ink: { 900:'#0b1220', 800:'#0f172a', 700:'#1e293b' }
-          }
-        }
-      }
-    }
-  </script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
   <style>
-    html { scroll-padding-top: 80px; }
-    body { font-family: 'Inter', system-ui, sans-serif; }
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    :root {
+      --bg: #f8f8fd; --glow: #ecefff; --text: #475569; --title: #1e293b; --muted: #7b8798;
+      --line: #cbd5e1; --border: #e5e7eb; --card: #ffffff; --chip: #e7e8ec; --pill: #ffffff;
+      --hl: #e6a50a; --yellow: #facc15; --blue: #3b82f6; --navbg: rgba(255,255,255,.92);
+    }
+    .dark {
+      --bg: #0b1020; --glow: #141a35; --text: #b6c0d1; --title: #f1f5f9; --muted: #8a96aa;
+      --line: #334155; --border: #232c44; --card: #11182e; --chip: #1c2540; --pill: #0f1629;
+      --hl: #f5b83a; --yellow: #facc15; --blue: #60a5fa; --navbg: rgba(17,24,46,.92);
+    }
+    html { scroll-padding-top: 90px; }
+    body {
+      font-family: 'Lexend', system-ui, sans-serif; color: var(--text);
+      background: radial-gradient(ellipse 60% 40% at 85% 0%, var(--glow) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 40% at 0% 60%, var(--glow) 0%, transparent 70%), var(--bg);
+      background-attachment: fixed; transition: background-color .3s, color .3s;
+    }
+    .title { color: var(--title); }
+    .muted { color: var(--muted); }
+    .ico { width: 1.1em; height: 1.1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    /* Menú flotante */
+    .nav { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); z-index: 50; background: var(--navbg);
+      backdrop-filter: blur(10px); border-radius: 9999px; padding: .5rem 1.1rem; display: flex; align-items: center; gap: 1rem;
+      box-shadow: 0 6px 24px -8px rgba(15,23,42,.25); border: 1px solid var(--border); white-space: nowrap; }
+    .nav a { font-size: .8rem; font-weight: 500; color: var(--title); transition: color .2s; }
+    .nav a:hover, .nav a.active { color: var(--blue); }
+    .nav button { color: var(--title); display: flex; }
+    @media (min-width: 640px) { .nav { gap: 1.4rem; padding: .55rem 1.4rem; } .nav a { font-size: .9rem; } }
+
+    /* Etiquetas y botones */
+    .badge { display: inline-block; border: 1.5px solid #34d399; background: #d1fae5; color: #065f46; border-radius: 9999px; padding: .3rem .9rem; font-size: .85rem; }
+    .dark .badge { background: rgba(16,185,129,.15); color: #6ee7b7; border-color: #10b981; }
+    .pill { display: inline-flex; align-items: center; gap: .45rem; border: 1.5px solid transparent; border-radius: 9999px; padding: .4rem .95rem;
+      font-size: .85rem; color: var(--title); transition: transform .2s, box-shadow .2s;
+      background: linear-gradient(var(--pill), var(--pill)) padding-box, linear-gradient(90deg, #10b981, #0f766e) border-box; }
+    .pill:hover { transform: translateY(-2px); box-shadow: 0 8px 18px -10px #10b981; }
+    .pill-soft { background: linear-gradient(var(--pill), var(--pill)) padding-box, linear-gradient(90deg, #facc15, #f59e0b) border-box; }
+    .pill-soft:hover { box-shadow: 0 8px 18px -10px #f59e0b; }
+    .chip { display: inline-flex; align-items: center; gap: .35rem; background: var(--chip); color: var(--title); font-size: .72rem; font-weight: 500; padding: .22rem .7rem; border-radius: 9999px; }
+    .chip i { width: .55rem; height: .55rem; border-radius: 2px; display: inline-block; }
+    .hl { color: var(--hl); font-weight: 600; }
+    .code { font-family: 'JetBrains Mono', monospace; color: var(--hl); font-size: .92em; }
+
+    /* Títulos de sección */
+    .h2 { display: flex; align-items: center; gap: .75rem; font-size: 1.9rem; font-weight: 600; color: var(--title); margin-bottom: 3rem; }
+    .h2 .ico { width: 1.6rem; height: 1.6rem; stroke-width: 1.8; }
+    .h3 { font-size: 1.15rem; font-weight: 600; color: var(--title); margin: 3rem 0 1.5rem; }
+
+    /* Línea de tiempo */
+    .tl { border-left: 2px solid var(--line); margin-left: 6px; }
+    .tl-item { position: relative; padding-left: 2rem; padding-bottom: 3.5rem; }
+    .tl-item:last-child { padding-bottom: 1rem; }
+    .tl-item::before { content: ''; position: absolute; left: -8px; top: .5rem; width: 14px; height: 14px; border-radius: 9999px; background: var(--yellow); }
+    .tl-role { color: var(--yellow); font-weight: 600; font-size: 1.1rem; line-height: 1.35; }
+    .tl-org { color: var(--title); font-weight: 500; font-size: 1.05rem; opacity: .85; }
+    .list { list-style: disc; padding-left: 1.2rem; }
+    .list li { margin-bottom: .65rem; line-height: 1.65; }
+    .list strong, .desc strong { color: var(--title); font-weight: 600; }
+    .desc { line-height: 1.65; }
+
+    /* Proyectos y tarjetas */
+    .proj { margin-bottom: 4rem; }
+    .proj h4 { font-size: 1.25rem; font-weight: 600; color: var(--title); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: .9rem; padding: 1.2rem 1.3rem; transition: transform .25s, box-shadow .25s; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -18px rgba(15,23,42,.35); }
+    .card h4 { font-weight: 600; color: var(--title); font-size: 1rem; }
+
+    /* Foto rotada de "Sobre mí" */
+    .frame { border: 6px solid #d9dde5; border-radius: 1.1rem; transform: rotate(4deg); box-shadow: 0 14px 30px -16px rgba(15,23,42,.5); overflow: hidden; background: var(--card); }
+    .dark .frame { border-color: #2a3350; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
-    .grid-bg {
-      background-image:
-        linear-gradient(rgba(52,211,153,.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(52,211,153,.07) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
-    .timeline-dot::before {
-      content: ''; position: absolute; left: -9px; top: 6px; width: 14px; height: 14px;
-      border-radius: 9999px; background: #10b981; border: 3px solid #f8fafc; box-shadow: 0 0 0 2px #10b981;
-    }
-    .dark .timeline-dot::before { border-color: #0f172a; }
-    body, section, article, div { transition: background-color .3s ease, border-color .3s ease; }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal { transition: none; opacity: 1; transform: none; }
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { transition: none; opacity: 1; transform: none; } }
   </style>
 </head>
 
-<body class="bg-slate-50 dark:bg-ink-900 text-slate-700 dark:text-slate-300 antialiased">
+<body class="antialiased">
 
-  <!-- NAVBAR -->
-  <header class="fixed top-0 inset-x-0 z-50 bg-ink-800/90 backdrop-blur border-b border-white/10">
-    <nav class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
-      <a href="#inicio" class="text-white font-bold tracking-tight">
-        M<span class="text-brand-400">.</span>Cifuentes
-      </a>
-      <ul class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
-        <li><a class="hover:text-brand-400 transition" href="#sobre-mi">Sobre mí</a></li>
-        <li><a class="hover:text-brand-400 transition" href="#habilidades">Habilidades</a></li>
-        <li><a class="hover:text-brand-400 transition" href="#proyectos">Proyectos</a></li>
-        <li><a class="hover:text-brand-400 transition" href="#experiencia">Experiencia</a></li>
-        <li><a class="hover:text-brand-400 transition" href="#educacion">Educación</a></li>
-        <li><a href="#contacto" class="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded-lg transition">Contacto</a></li>
-        <li>
-          <button class="themeBtn text-slate-300 hover:text-brand-400 p-2 rounded-lg transition" aria-label="Cambiar tema claro/oscuro">
-            <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
-            <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4l1.4-1.4"/></svg>
-          </button>
-        </li>
-      </ul>
-      <div class="md:hidden flex items-center gap-1">
-        <button class="themeBtn text-white p-2" aria-label="Cambiar tema claro/oscuro">
-          <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
-          <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4l1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4l1.4-1.4"/></svg>
-        </button>
-        <button id="menuBtn" class="text-white p-2" aria-label="Abrir menú">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
-    </nav>
-    <div id="mobileMenu" class="hidden md:hidden bg-ink-800 border-t border-white/10">
-      <ul class="px-5 py-4 space-y-3 text-slate-200 font-medium">
-        <li><a href="#sobre-mi" class="block">Sobre mí</a></li>
-        <li><a href="#habilidades" class="block">Habilidades</a></li>
-        <li><a href="#proyectos" class="block">Proyectos</a></li>
-        <li><a href="#experiencia" class="block">Experiencia</a></li>
-        <li><a href="#educacion" class="block">Educación</a></li>
-        <li><a href="#contacto" class="block text-brand-400">Contacto</a></li>
-      </ul>
-    </div>
-  </header>
+  <!-- Íconos -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M21.42 10.92 12.83 7a2 2 0 0 0-1.66 0L2.6 10.9a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  </svg>
+
+  <!-- ============ MENÚ ============ -->
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="#inicio" data-s="inicio">Inicio</a>
+    <a href="#experiencia" data-s="experiencia">Experiencia</a>
+    <a href="#proyectos" data-s="proyectos">Proyectos</a>
+    <a href="#formacion" data-s="formacion">Formación</a>
+    <a href="#sobre-mi" data-s="sobre-mi">Sobre mí</a>
+    <button id="modoBtn" aria-label="Cambiar entre modo claro y oscuro">
+      <svg class="ico dark:hidden"><use href="#i-moon"/></svg>
+      <svg class="ico hidden dark:block"><use href="#i-sun"/></svg>
+    </button>
+  </nav>
 
   <main>
-    <!-- HERO -->
-    <section id="inicio" class="relative min-h-screen flex items-center bg-ink-900 grid-bg overflow-hidden pt-16">
-      <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-0 -left-24 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl"></div>
-
-      <div class="relative max-w-6xl mx-auto px-5 py-16 grid md:grid-cols-5 gap-12 items-center">
-        <!-- Foto de perfil -->
-        <div class="md:col-span-2 md:order-last flex justify-center">
-          <div class="relative">
-            <div class="absolute -inset-3 rounded-full bg-gradient-to-tr from-brand-400 to-sky-400 opacity-70 blur-md"></div>
-            <div class="relative w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-ink-800 bg-ink-700">
-              <!-- Iniciales (se ven si aún no subes tu foto) -->
-              <div class="absolute inset-0 flex items-center justify-center text-6xl font-extrabold text-brand-400">MC</div>
-              <!-- Coloca tu foto como "foto.jpg" junto a index.html -->
-              <img src="foto.jpg" alt="Foto de Miguel Angel Cifuentes León"
-                   class="absolute inset-0 w-full h-full object-cover"
-                   onerror="this.style.display='none'" />
+    <!-- ============ INICIO ============ -->
+    <section id="inicio" class="min-h-screen flex items-center pt-24 pb-16">
+      <div class="max-w-5xl mx-auto px-6 w-full">
+        <div class="max-w-2xl">
+          <div class="flex items-center gap-3 flex-wrap mb-5">
+            <div class="relative w-16 h-16 rounded-full overflow-hidden shadow-lg flex-shrink-0" style="background:var(--chip)">
+              <div class="absolute inset-0 flex items-center justify-center font-bold title">MC</div>
+              <img src="foto.jpg" alt="Foto de Miguel Angel Cifuentes León" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'" />
             </div>
-            <div class="absolute -bottom-2 -right-2 bg-brand-500 text-white rounded-full p-3 shadow-lg" aria-hidden="true">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 119.5 9 2.5 2.5 0 0112 11.5z"/></svg>
-            </div>
+            <span class="badge">Geógrafo &amp; Especialista SIG</span>
           </div>
-        </div>
 
-        <div class="md:col-span-3 text-center md:text-left">
-          <p class="inline-flex items-center gap-2 text-brand-400 text-sm font-semibold tracking-widest uppercase mb-5">
-            <span class="w-8 h-px bg-brand-400"></span> Geógrafo · SIG · Python
-          </p>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
-            Miguel Angel <br class="hidden sm:block" />
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-sky-400">Cifuentes León</span>
-          </h1>
-          <p class="mt-6 text-lg text-slate-300 max-w-2xl leading-relaxed mx-auto md:mx-0">
-            Geógrafo y estudiante de Ingeniería de Sistemas. Transformo datos territoriales en decisiones:
-            análisis espacial, SIG, desarrollo en Python y bases de datos.
-          </p>
-          <div class="mt-9 flex flex-wrap gap-4 justify-center md:justify-start">
-            <a href="#proyectos" class="bg-brand-500 hover:bg-brand-600 text-white font-semibold px-6 py-3 rounded-lg transition shadow-lg shadow-brand-500/20">Ver proyectos</a>
-            <!-- Coloca tu CV como "CV-Miguel-Cifuentes.pdf" junto a index.html -->
-            <a href="CV-Miguel-Cifuentes.pdf" download
-               class="inline-flex items-center gap-2 border border-white/20 hover:border-brand-400 hover:text-brand-400 text-white font-semibold px-6 py-3 rounded-lg transition">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
-              Descargar CV
-            </a>
-          </div>
-        </div>
-      </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-[3.4rem] font-semibold title leading-tight tracking-tight">Hey, soy Miguel Angel Cifuentes León</h1>
 
-      <a href="#sobre-mi" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-400 hover:text-brand-400 animate-bounce" aria-label="Bajar">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-      </a>
-    </section>
+          <p class="mt-6 text-xl sm:text-[1.35rem] leading-relaxed title">
+            Convierto datos del territorio en decisiones: <span class="hl">SIG y análisis espacial</span>, <span class="hl">Python y bases de datos</span>,
+            con trabajo de campo y <span class="hl">licencia de piloto de dron</span>. Geógrafo titulado por la UNMSM y estudiante de Ingeniería de Sistemas. De Perú.
+          </p>
 
-    <!-- SOBRE MÍ -->
-    <section id="sobre-mi" class="py-24 bg-white dark:bg-ink-900">
-      <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center">
-        <div class="reveal">
-          <p class="text-brand-600 dark:text-brand-400 font-semibold uppercase tracking-widest text-sm mb-2">Sobre mí</p>
-          <h2 class="text-3xl sm:text-4xl font-bold text-ink-800 dark:text-white mb-6">Del territorio al dato, y del dato a la decisión</h2>
-          <p class="leading-relaxed mb-4">
-            Soy <strong class="dark:text-white">geógrafo titulado por la UNMSM</strong> y estudiante de <strong class="dark:text-white">Ingeniería de Sistemas (UNMSM)</strong>.
-            Me especializo en Sistemas de Información Geográfica, análisis espacial, desarrollo en Python y gestión de bases de datos.
-          </p>
-          <p class="leading-relaxed mb-4">
-            He trabajado en redes de gas e infraestructura urbana, catastro municipal y gestión ambiental, y cuento con amplia
-            trayectoria en la ONPE como coordinador y responsable de local de votación, lo que me ha dado experiencia
-            en logística, liderazgo de equipos y trabajo bajo presión.
-          </p>
-          <p class="leading-relaxed">
-            Combino la mirada del geógrafo con el pensamiento del ingeniero de sistemas para construir soluciones
-            geoespaciales rigurosas, automatizadas y útiles.
-          </p>
-        </div>
-        <div class="reveal grid grid-cols-2 gap-4">
-          <div class="bg-slate-50 dark:bg-ink-800 border border-slate-200 dark:border-white/10 rounded-2xl p-6 text-center">
-            <div class="text-3xl font-extrabold text-brand-600 dark:text-brand-400">SIG</div>
-            <p class="text-sm mt-1">Análisis y modelado espacial</p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="https://github.com/cifuentes8" target="_blank" rel="noopener" class="pill"><svg class="ico"><use href="#i-github"/></svg>Github</a>
+            <a href="mailto:fuentesleonm1@gmail.com" class="pill"><svg class="ico"><use href="#i-mail"/></svg>Contáctame</a>
+            <a href="https://wa.me/51931551660?text=Hola%20Miguel%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte." target="_blank" rel="noopener" class="pill"><svg class="ico"><use href="#i-chat"/></svg>WhatsApp</a>
+            <a href="CV-Miguel-Cifuentes.pdf" download class="pill"><svg class="ico"><use href="#i-file"/></svg>Curriculum</a>
           </div>
-          <div class="bg-slate-50 dark:bg-ink-800 border border-slate-200 dark:border-white/10 rounded-2xl p-6 text-center">
-            <div class="text-3xl font-extrabold text-brand-600 dark:text-brand-400">Python</div>
-            <p class="text-sm mt-1">Automatización y datos</p>
-          </div>
-          <div class="bg-slate-50 dark:bg-ink-800 border border-slate-200 dark:border-white/10 rounded-2xl p-6 text-center">
-            <div class="text-3xl font-extrabold text-brand-600 dark:text-brand-400">SQL</div>
-            <p class="text-sm mt-1">Bases de datos</p>
-          </div>
-          <div class="bg-slate-50 dark:bg-ink-800 border border-slate-200 dark:border-white/10 rounded-2xl p-6 text-center">
-            <div class="text-3xl font-extrabold text-brand-600 dark:text-brand-400">GRD</div>
-            <p class="text-sm mt-1">Gestión del Riesgo de Desastres</p>
+
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="pill pill-soft" style="padding:.25rem .75rem;font-size:.78rem">Licencia de conducir A-I</span>
+            <span class="pill pill-soft" style="padding:.25rem .75rem;font-size:.78rem">Licencia de piloto de dron</span>
+            <span class="pill pill-soft" style="padding:.25rem .75rem;font-size:.78rem">Brigadista comunitario</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- HABILIDADES -->
-    <section id="habilidades" class="py-24 bg-slate-50 dark:bg-ink-800">
-      <div class="max-w-6xl mx-auto px-5">
-        <div class="reveal text-center max-w-2xl mx-auto mb-14">
-          <p class="text-brand-600 dark:text-brand-400 font-semibold uppercase tracking-widest text-sm mb-2">Habilidades</p>
-          <h2 class="text-3xl sm:text-4xl font-bold text-ink-800 dark:text-white">Mis herramientas de trabajo</h2>
-        </div>
+    <!-- ============ EXPERIENCIA ============ -->
+    <section id="experiencia" class="py-20">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="h2 reveal"><svg class="ico"><use href="#i-briefcase"/></svg>Experiencia laboral</h2>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="reveal bg-white dark:bg-ink-700 rounded-2xl border border-slate-200 dark:border-white/10 p-6 hover:shadow-lg hover:-translate-y-1 transition">
-            <h3 class="font-bold text-ink-800 dark:text-white mb-4 flex items-center gap-2">🗺️ SIG y Cartografía</h3>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-400 text-sm font-medium">ArcGIS</span>
-              <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-400 text-sm font-medium">ArcGIS Pro</span>
-              <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-400 text-sm font-medium">QGIS</span>
-              <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-400 text-sm font-medium">AutoCAD</span>
-              <span class="px-3 py-1 rounded-full bg-brand-50 text-brand-700 dark:bg-brand-500/15 dark:text-brand-400 text-sm font-medium">Imágenes satelitales</span>
+        <div class="tl">
+          <article class="tl-item reveal md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10">
+            <div class="mb-4 md:mb-0">
+              <h3 class="tl-role">Asistente SIG / SGP</h3>
+              <p class="tl-org">Construredes S.A.C.</p>
+              <p class="muted text-sm mt-1">Redes de gas e infraestructura urbana</p>
             </div>
-          </div>
-
-          <div class="reveal bg-white dark:bg-ink-700 rounded-2xl border border-slate-200 dark:border-white/10 p-6 hover:shadow-lg hover:-translate-y-1 transition">
-            <h3 class="font-bold text-ink-800 dark:text-white mb-4 flex items-center gap-2">💻 Programación y Datos</h3>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300 text-sm font-medium">Python (Fundamentos – UNI)</span>
-              <span class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300 text-sm font-medium">SQL</span>
-              <span class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300 text-sm font-medium">Bases de datos</span>
-              <span class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300 text-sm font-medium">Excel avanzado</span>
-            </div>
-          </div>
-
-          <div class="reveal bg-white dark:bg-ink-700 rounded-2xl border border-slate-200 dark:border-white/10 p-6 hover:shadow-lg hover:-translate-y-1 transition">
-            <h3 class="font-bold text-ink-800 dark:text-white mb-4 flex items-center gap-2">📋 Campo y Gestión</h3>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 rounded-full bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300 text-sm font-medium">KoboToolbox</span>
-              <span class="px-3 py-1 rounded-full bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300 text-sm font-medium">SSOMA</span>
-              <span class="px-3 py-1 rounded-full bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300 text-sm font-medium">Gestión del Riesgo de Desastres</span>
-              <span class="px-3 py-1 rounded-full bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300 text-sm font-medium">Supervisión de campo</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROYECTOS -->
-    <section id="proyectos" class="py-24 bg-white dark:bg-ink-900">
-      <div class="max-w-6xl mx-auto px-5">
-        <div class="reveal text-center max-w-2xl mx-auto mb-14">
-          <p class="text-brand-600 dark:text-brand-400 font-semibold uppercase tracking-widest text-sm mb-2">Proyectos destacados</p>
-          <h2 class="text-3xl sm:text-4xl font-bold text-ink-800 dark:text-white">Trabajo que deja huella en el territorio</h2>
-        </div>
-
-        <div class="grid lg:grid-cols-3 gap-8">
-          <!-- Proyecto 1 -->
-          <article class="reveal group bg-white dark:bg-ink-800 rounded-2xl border border-slate-200 dark:border-white/10 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition flex flex-col">
-            <div class="h-44 bg-gradient-to-br from-emerald-500 to-sky-600 relative flex items-center justify-center">
-              <svg viewBox="0 0 200 100" class="w-4/5 opacity-90" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10 80 C40 80 40 30 80 40 S120 85 150 45 S185 20 190 20" stroke-dasharray="6 6"/>
-                <circle cx="10" cy="80" r="6" fill="white"/><circle cx="190" cy="20" r="6" fill="white"/>
-              </svg>
-              <span class="absolute top-3 left-3 bg-white/90 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full">Tesis · UNMSM</span>
-            </div>
-            <div class="p-6 flex flex-col flex-1">
-              <h3 class="text-xl font-bold text-ink-800 dark:text-white mb-2">Investigación y Modelado Espacial: Rutas Óptimas para Bicicletas</h3>
-              <p class="text-sm leading-relaxed mb-4">
-                Tesis de investigación aplicada con modelado espacial para determinar rutas óptimas para
-                el uso de bicicletas. Publicada en el repositorio institucional Cybertesis (UNMSM).
-              </p>
-              <div class="flex flex-wrap gap-2 mb-5 mt-auto">
-                <span class="text-xs bg-slate-100 dark:bg-white/10 px-2.5 py-1 rounded-full">Análisis espacial</span>
-                <span class="text-xs bg-slate-100 dark:bg-white/10 px-2.5 py-1 rounded-full">Modelado</span>
-                <span class="text-xs bg-slate-100 dark:bg-white/10 px-2.5 py-1 rounded-full">SIG</span>
-              </div>
-              <!-- Reemplaza el # por el enlace real de tu tesis en Cybertesis -->
-              <a href="#" target="_blank" rel="noopener" class="text-brand-600 dark:text-brand-400 font-semibold text-sm hover:underline">Ver tesis en Cybertesis →</a>
-            </div>
-          </article>
-
-          <!-- Proyecto 2 -->
-          <article class="reveal group bg-white dark:bg-ink-800 rounded-2xl border border-slate-200 dark:border-white/10 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition flex flex-col">
-            <div class="h-44 bg-gradient-to-br from-slate-700 to-ink-900 relative flex items-center justify-center">
-              <svg viewBox="0 0 200 100" class="w-4/5 opacity-90" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round">
-                <path d="M15 20 H90 V60 H185 M90 60 V90 M130 60 V25 H185"/>
-                <circle cx="15" cy="20" r="5" fill="#34d399"/><circle cx="90" cy="90" r="5" fill="#34d399"/>
-                <circle cx="185" cy="60" r="5" fill="#34d399"/><circle cx="185" cy="25" r="5" fill="#34d399"/>
-              </svg>
-              <span class="absolute top-3 left-3 bg-white/90 text-slate-700 text-xs font-bold px-3 py-1 rounded-full">Infraestructura</span>
-            </div>
-            <div class="p-6 flex flex-col flex-1">
-              <h3 class="text-xl font-bold text-ink-800 dark:text-white mb-2">Gestión de Redes de Gas e Infraestructura Urbana</h3>
-              <p class="text-sm leading-relaxed mb-4">
-                Mapeo geoespacial y gestión de información de redes de gas e infraestructura urbana
-                en Construredes S.A.C. e Ingeo Soluciones Geográficas, con ArcGIS y AutoCAD.
-              </p>
-              <div class="flex flex-wrap gap-2 mt-auto">
-                <span class="text-xs bg-slate-100 dark:bg-white/10 px-2.5 py-1 rounded-full">ArcGIS</span>
-                <span class="text-xs bg-slate-100 dark:bg-white/10 px-2.5 py-1 rounded-full">AutoCAD</span>
-                <span class="text-xs bg-slate-100 dark:bg-white/10 px-2.5 py-1 rounded-full">Mapeo geoespacial</span>
+            <div>
+              <p class="desc mb-4">Apoyé la gestión de <strong>redes de gas e infraestructura urbana</strong> con información geoespacial confiable para la toma de decisiones.</p>
+              <ul class="list">
+                <li><strong>Mapeo geoespacial:</strong> elaboré y actualicé cartografía de redes de gas e infraestructura urbana en ArcGIS.</li>
+                <li><strong>Planos técnicos:</strong> trabajé con AutoCAD para el dibujo y la revisión de planos de las redes.</li>
+                <li><strong>Gestión de la información:</strong> organicé y validé datos espaciales para mantener una base de datos ordenada y consultable.</li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-5">
+                <span class="chip"><i style="background:#0ea5e9"></i>ArcGIS</span><span class="chip"><i style="background:#ef4444"></i>AutoCAD</span>
+                <span class="chip"><i style="background:#10b981"></i>Mapeo geoespacial</span><span class="chip"><i style="background:#8b5cf6"></i>Bases de datos</span>
               </div>
             </div>
           </article>
 
-          <!-- Proyecto 3 -->
-          <article class="reveal group bg-white dark:bg-ink-800 rounded-2xl border border-slate-200 dark:border-white/10 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition flex flex-col">
-            <div class="h-44 bg-gradient-to-br from-amber-500 to-orange-600 relative flex items-center justify-center">
-              <svg viewBox="0 0 200 100" class="w-4/5 opacity-90" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round">
-                <path d="M20 20 H80 V55 H20Z M95 20 H180 V45 H95Z M95 58 H180 V85 H95Z M20 68 H80 V85 H20Z"/>
-              </svg>
-              <span class="absolute top-3 left-3 bg-white/90 text-amber-700 text-xs font-bold px-3 py-1 rounded-full">Sector público</span>
+          <article class="tl-item reveal md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10">
+            <div class="mb-4 md:mb-0">
+              <h3 class="tl-role">Especialista SIG</h3>
+              <p class="tl-org">Ingeo Soluciones Geográficas</p>
+              <p class="muted text-sm mt-1">Análisis territorial</p>
             </div>
-            <div class="p-6 flex flex-col flex-1">
-              <h3 class="text-xl font-bold text-ink-800 dark:text-white mb-2">Catastro y Gestión Ambiental</h3>
-              <p class="text-sm leading-relaxed mb-4">
-                Georreferenciación y supervisión de campo en la Municipalidad de Ate Vitarte,
-                apoyando el catastro y la gestión ambiental del distrito.
-              </p>
-              <div class="flex flex-wrap gap-2 mt-auto">
-                <span class="text-xs bg-slate-100 dark:bg-white/10 px-2.5 py-1 rounded-full">Catastro</span>
-                <span class="text-xs bg-slate-100 dark:bg-white/10 px-2.5 py-1 rounded-full">Georreferenciación</span>
-                <span class="text-xs bg-slate-100 dark:bg-white/10 px-2.5 py-1 rounded-full">Trabajo de campo</span>
+            <div>
+              <p class="desc mb-4">Asumí el análisis y procesamiento de <strong>información territorial</strong> para proyectos de infraestructura urbana.</p>
+              <ul class="list">
+                <li><strong>Mapeo y análisis espacial:</strong> procesé información geográfica con ArcGIS Pro y QGIS para producir mapas y resultados listos para el cliente.</li>
+                <li><strong>Infraestructura urbana:</strong> apoyé proyectos de redes con cartografía y planos en ArcGIS y AutoCAD.</li>
+                <li><strong>Calidad de datos:</strong> revisé y depuré capas de información antes de su entrega.</li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-5">
+                <span class="chip"><i style="background:#0ea5e9"></i>ArcGIS Pro</span><span class="chip"><i style="background:#22c55e"></i>QGIS</span>
+                <span class="chip"><i style="background:#ef4444"></i>AutoCAD</span><span class="chip"><i style="background:#f59e0b"></i>Imágenes satelitales</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="tl-item reveal md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10">
+            <div class="mb-4 md:mb-0">
+              <h3 class="tl-role">Catastro y Gestión Ambiental</h3>
+              <p class="tl-org">Municipalidad de Ate</p>
+              <p class="muted text-sm mt-1">Sector público</p>
+            </div>
+            <div>
+              <p class="desc mb-4">Apoyé el <strong>catastro</strong> y la <strong>gestión ambiental</strong> del distrito, combinando trabajo de gabinete y de campo.</p>
+              <ul class="list">
+                <li><strong>Georreferenciación:</strong> ubiqué y registré información territorial para el catastro municipal.</li>
+                <li><strong>Supervisión de campo:</strong> verifiqué en terreno los datos y recopilé información con herramientas digitales como KoboToolbox.</li>
+                <li><strong>Gestión ambiental:</strong> contribuí con información geográfica para el seguimiento de temas ambientales.</li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-5">
+                <span class="chip"><i style="background:#10b981"></i>Georreferenciación</span><span class="chip"><i style="background:#f59e0b"></i>Catastro</span>
+                <span class="chip"><i style="background:#3b82f6"></i>KoboToolbox</span><span class="chip"><i style="background:#22c55e"></i>Trabajo de campo</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="tl-item reveal md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-10">
+            <div class="mb-4 md:mb-0">
+              <h3 class="tl-role">Coordinador y Responsable de Local de Votación</h3>
+              <p class="tl-org">ONPE</p>
+              <p class="muted text-sm mt-1">Procesos electorales</p>
+            </div>
+            <div>
+              <p class="desc mb-4">Amplia trayectoria en <strong>procesos electorales</strong>, a cargo de la coordinación y de la operación de locales de votación.</p>
+              <ul class="list">
+                <li><strong>Liderazgo de equipos:</strong> coordiné al personal del local y la atención a los ciudadanos durante la jornada.</li>
+                <li><strong>Logística:</strong> gestioné materiales, tiempos y puntos de control en jornadas de alta exigencia.</li>
+                <li><strong>Trabajo bajo presión:</strong> tomé decisiones rápidas y mantuve el orden en el proceso de principio a fin.</li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-5">
+                <span class="chip"><i style="background:#f59e0b"></i>Liderazgo</span><span class="chip"><i style="background:#3b82f6"></i>Logística</span>
+                <span class="chip"><i style="background:#ef4444"></i>Gestión de equipos</span>
               </div>
             </div>
           </article>
@@ -324,144 +256,216 @@
       </div>
     </section>
 
-    <!-- EXPERIENCIA -->
-    <section id="experiencia" class="py-24 bg-slate-50 dark:bg-ink-800">
-      <div class="max-w-4xl mx-auto px-5">
-        <div class="reveal text-center mb-14">
-          <p class="text-brand-600 dark:text-brand-400 font-semibold uppercase tracking-widest text-sm mb-2">Experiencia profesional</p>
-          <h2 class="text-3xl sm:text-4xl font-bold text-ink-800 dark:text-white">Trayectoria</h2>
+    <!-- ============ PROYECTOS ============ -->
+    <section id="proyectos" class="py-20">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="h2 reveal"><svg class="ico"><use href="#i-code"/></svg>Proyectos</h2>
+
+        <div class="max-w-3xl">
+          <h3 class="h3" style="margin-top:0">Investigación y proyectos SIG</h3>
+
+          <article class="proj reveal">
+            <h4>Investigación y Modelado Espacial: Rutas Óptimas para Bicicletas</h4>
+            <p class="muted text-sm mt-1">Tesis · UNMSM</p>
+            <div class="flex flex-wrap gap-2 my-3">
+              <span class="chip"><i style="background:#10b981"></i>Análisis espacial</span><span class="chip"><i style="background:#0ea5e9"></i>Modelado</span>
+              <span class="chip"><i style="background:#8b5cf6"></i>SIG</span><span class="chip"><i style="background:#f59e0b"></i>Movilidad urbana</span>
+            </div>
+            <p class="desc mb-3">Tesis de investigación aplicada para obtener el título de Geógrafo, que determina rutas óptimas para el uso de bicicletas mediante modelado espacial.</p>
+            <ul class="list text-[.95rem]">
+              <li>Planteé un modelo espacial que evalúa el territorio para identificar los recorridos más adecuados para ciclistas.</li>
+              <li>Integré análisis geográfico y criterios de movilidad urbana para sustentar los resultados.</li>
+              <li>Documenté la metodología para que pueda replicarse en otras zonas.</li>
+            </ul>
+            <p class="mt-3 text-[.95rem]"><strong class="title">Estado:</strong> Publicada en el repositorio institucional Cybertesis (UNMSM).</p>
+            <!-- Reemplaza el # por el enlace real de tu tesis en Cybertesis (si dejas #, el botón se oculta solo) -->
+            <a href="#" target="_blank" rel="noopener" data-needs-link class="pill mt-4"><svg class="ico"><use href="#i-link"/></svg>Ver tesis</a>
+          </article>
+
+          <article class="proj reveal">
+            <h4>Gestión de Redes de Gas e Infraestructura Urbana</h4>
+            <p class="muted text-sm mt-1">Construredes S.A.C. · Ingeo Soluciones Geográficas</p>
+            <div class="flex flex-wrap gap-2 my-3">
+              <span class="chip"><i style="background:#0ea5e9"></i>ArcGIS</span><span class="chip"><i style="background:#ef4444"></i>AutoCAD</span>
+              <span class="chip"><i style="background:#10b981"></i>Mapeo geoespacial</span>
+            </div>
+            <p class="desc mb-3">Las redes de gas y la infraestructura urbana necesitan información espacial exacta y actualizada, porque cualquier error en un plano se paga en campo.</p>
+            <ul class="list text-[.95rem]">
+              <li>Mapeé de forma geoespacial las redes de gas y la infraestructura urbana con ArcGIS.</li>
+              <li>Combiné la cartografía SIG con planos en AutoCAD para mantener la información consistente.</li>
+              <li>Ordené la información geográfica para que el equipo pudiera consultarla y actualizarla fácilmente.</li>
+            </ul>
+            <p class="mt-3 text-[.95rem]"><strong class="title">Rol:</strong> Asistente SIG/SGP y Especialista SIG.</p>
+          </article>
+
+          <article class="proj reveal">
+            <h4>Catastro y Gestión Ambiental</h4>
+            <p class="muted text-sm mt-1">Municipalidad de Ate Vitarte</p>
+            <div class="flex flex-wrap gap-2 my-3">
+              <span class="chip"><i style="background:#10b981"></i>Georreferenciación</span><span class="chip"><i style="background:#f59e0b"></i>Catastro</span>
+              <span class="chip"><i style="background:#3b82f6"></i>KoboToolbox</span>
+            </div>
+            <p class="desc mb-3">Apoyo al catastro y a la gestión ambiental del distrito, uniendo información de gabinete con verificación en terreno.</p>
+            <ul class="list text-[.95rem]">
+              <li>Georreferencié información territorial para el catastro del distrito.</li>
+              <li>Realicé supervisión de campo para validar en terreno los datos registrados.</li>
+              <li>Apoyé la gestión ambiental con información geográfica ordenada y verificada.</li>
+            </ul>
+            <p class="mt-3 text-[.95rem]"><strong class="title">Rol:</strong> Georreferenciación y supervisión de campo.</p>
+          </article>
         </div>
 
-        <div class="border-l-2 border-brand-500/40 ml-3 space-y-10">
-          <div class="reveal relative pl-8 timeline-dot">
-            <h3 class="text-lg font-bold text-ink-800 dark:text-white">Asistente SIG / SGP</h3>
-            <p class="text-brand-600 dark:text-brand-400 font-medium text-sm mb-2">Construredes S.A.C.</p>
-            <p class="text-sm leading-relaxed">Soporte en sistemas de información geográfica y gestión de redes de gas e infraestructura urbana, con ArcGIS y AutoCAD.</p>
-          </div>
-          <div class="reveal relative pl-8 timeline-dot">
-            <h3 class="text-lg font-bold text-ink-800 dark:text-white">Especialista SIG</h3>
-            <p class="text-brand-600 dark:text-brand-400 font-medium text-sm mb-2">Ingeo Soluciones Geográficas</p>
-            <p class="text-sm leading-relaxed">Mapeo geoespacial, procesamiento y análisis de información territorial para proyectos de infraestructura.</p>
-          </div>
-          <div class="reveal relative pl-8 timeline-dot">
-            <h3 class="text-lg font-bold text-ink-800 dark:text-white">Catastro y Gestión Ambiental</h3>
-            <p class="text-brand-600 dark:text-brand-400 font-medium text-sm mb-2">Municipalidad de Ate</p>
-            <p class="text-sm leading-relaxed">Georreferenciación, apoyo al catastro y supervisión de campo en temas ambientales.</p>
-          </div>
-          <div class="reveal relative pl-8 timeline-dot">
-            <h3 class="text-lg font-bold text-ink-800 dark:text-white">Coordinador y Responsable de Local de Votación</h3>
-            <p class="text-brand-600 dark:text-brand-400 font-medium text-sm mb-2">ONPE</p>
-            <p class="text-sm leading-relaxed">Amplia trayectoria en procesos electorales: coordinación logística, liderazgo de equipos y gestión operativa en jornadas de alta exigencia.</p>
+        <!-- Galería: aparece sola si subes fotos a la carpeta "trabajos" -->
+        <div id="galeria" hidden>
+          <h3 class="h3">Galería de trabajos</h3>
+          <div id="galGrid" class="grid sm:grid-cols-2 gap-5">
+            <figure class="card reveal" style="padding:.5rem"><a href="trabajos/trabajo1.jpg" target="_blank" rel="noopener"><img src="trabajos/trabajo1.jpg" alt="Trabajo geoespacial 1" class="w-full h-56 object-cover rounded-lg" onerror="this.closest('figure').remove();window.checkGaleria&&checkGaleria()" /></a></figure>
+            <figure class="card reveal" style="padding:.5rem"><a href="trabajos/trabajo2.jpg" target="_blank" rel="noopener"><img src="trabajos/trabajo2.jpg" alt="Trabajo geoespacial 2" class="w-full h-56 object-cover rounded-lg" onerror="this.closest('figure').remove();window.checkGaleria&&checkGaleria()" /></a></figure>
+            <figure class="card reveal" style="padding:.5rem"><a href="trabajos/trabajo3.jpg" target="_blank" rel="noopener"><img src="trabajos/trabajo3.jpg" alt="Trabajo geoespacial 3" class="w-full h-56 object-cover rounded-lg" onerror="this.closest('figure').remove();window.checkGaleria&&checkGaleria()" /></a></figure>
+            <figure class="card reveal" style="padding:.5rem"><a href="trabajos/trabajo4.jpg" target="_blank" rel="noopener"><img src="trabajos/trabajo4.jpg" alt="Trabajo geoespacial 4" class="w-full h-56 object-cover rounded-lg" onerror="this.closest('figure').remove();window.checkGaleria&&checkGaleria()" /></a></figure>
+            <figure class="card reveal" style="padding:.5rem"><a href="trabajos/trabajo5.jpg" target="_blank" rel="noopener"><img src="trabajos/trabajo5.jpg" alt="Trabajo geoespacial 5" class="w-full h-56 object-cover rounded-lg" onerror="this.closest('figure').remove();window.checkGaleria&&checkGaleria()" /></a></figure>
+            <figure class="card reveal" style="padding:.5rem"><a href="trabajos/trabajo6.jpg" target="_blank" rel="noopener"><img src="trabajos/trabajo6.jpg" alt="Trabajo geoespacial 6" class="w-full h-56 object-cover rounded-lg" onerror="this.closest('figure').remove();window.checkGaleria&&checkGaleria()" /></a></figure>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- EDUCACIÓN -->
-    <section id="educacion" class="py-24 bg-white dark:bg-ink-900">
-      <div class="max-w-6xl mx-auto px-5">
-        <div class="reveal text-center mb-14">
-          <p class="text-brand-600 dark:text-brand-400 font-semibold uppercase tracking-widest text-sm mb-2">Educación y certificaciones</p>
-          <h2 class="text-3xl sm:text-4xl font-bold text-ink-800 dark:text-white">Formación académica</h2>
+    <!-- ============ FORMACIÓN Y LICENCIAS ============ -->
+    <section id="formacion" class="py-20">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="h2 reveal"><svg class="ico"><use href="#i-cap"/></svg>Formación y licencias</h2>
+
+        <h3 class="h3" style="margin-top:0">Formación académica</h3>
+        <div class="grid sm:grid-cols-2 gap-4 max-w-4xl">
+          <div class="card reveal">
+            <h4>Título de Geógrafo</h4>
+            <p class="muted text-sm mt-1">Universidad Nacional Mayor de San Marcos (UNMSM)</p>
+          </div>
+          <div class="card reveal">
+            <h4>Ingeniería de Sistemas</h4>
+            <p class="muted text-sm mt-1">Universidad Nacional Mayor de San Marcos (UNMSM) · En curso</p>
+          </div>
+          <div class="card reveal">
+            <h4>Python en Sistemas</h4>
+            <p class="muted text-sm mt-1">Universidad Nacional de Ingeniería (UNI)</p>
+          </div>
+          <div class="card reveal">
+            <h4>Diplomado en SSOMA</h4>
+            <p class="muted text-sm mt-1">SENCICO · Seguridad, salud ocupacional y medio ambiente</p>
+          </div>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="reveal bg-slate-50 dark:bg-ink-800 border border-slate-200 dark:border-white/10 rounded-2xl p-6">
-            <div class="text-3xl mb-3">🎓</div>
-            <h3 class="font-bold text-ink-800 dark:text-white">Título de Geógrafo</h3>
-            <p class="text-sm text-brand-600 dark:text-brand-400 font-medium">Universidad Nacional Mayor de San Marcos (UNMSM)</p>
+        <h3 class="h3">Licencias y certificaciones</h3>
+        <div class="grid sm:grid-cols-3 gap-4 max-w-4xl">
+          <div class="card reveal">
+            <h4>Licencia de conducir A-I</h4>
+            <p class="muted text-sm mt-1">Automóvil</p>
+            <p class="text-sm mt-2 leading-relaxed">Movilidad propia para llegar a zonas de trabajo y supervisión de campo.</p>
           </div>
-          <div class="reveal bg-slate-50 dark:bg-ink-800 border border-slate-200 dark:border-white/10 rounded-2xl p-6">
-            <div class="text-3xl mb-3">🖥️</div>
-            <h3 class="font-bold text-ink-800 dark:text-white">Ingeniería de Sistemas</h3>
-            <p class="text-sm text-brand-600 dark:text-brand-400 font-medium">Universidad Nacional Mayor de San Marcos (UNMSM) · En curso</p>
+          <div class="card reveal">
+            <h4>Licencia de piloto de dron</h4>
+            <p class="muted text-sm mt-1">Operación de drones</p>
+            <p class="text-sm mt-2 leading-relaxed">Habilitado para operar drones en trabajos de captura de imágenes del territorio.</p>
           </div>
-          <div class="reveal bg-slate-50 dark:bg-ink-800 border border-slate-200 dark:border-white/10 rounded-2xl p-6">
-            <div class="text-3xl mb-3">🐍</div>
-            <h3 class="font-bold text-ink-800 dark:text-white">Python en Sistemas</h3>
-            <p class="text-sm text-brand-600 dark:text-brand-400 font-medium">Universidad Nacional de Ingeniería (UNI)</p>
-          </div>
-          <div class="reveal bg-slate-50 dark:bg-ink-800 border border-slate-200 dark:border-white/10 rounded-2xl p-6">
-            <div class="text-3xl mb-3">🦺</div>
-            <h3 class="font-bold text-ink-800 dark:text-white">Diplomado en SSOMA</h3>
-            <p class="text-sm text-brand-600 dark:text-brand-400 font-medium">SENCICO</p>
-          </div>
-          <div class="reveal bg-slate-50 dark:bg-ink-800 border border-slate-200 dark:border-white/10 rounded-2xl p-6 sm:col-span-2 lg:col-span-2">
-            <div class="text-3xl mb-3">🚨</div>
-            <h3 class="font-bold text-ink-800 dark:text-white">Curso de Brigadista Comunitario</h3>
-            <p class="text-sm text-brand-600 dark:text-brand-400 font-medium">MML / CENEPRED</p>
+          <div class="card reveal">
+            <h4>Brigadista Comunitario</h4>
+            <p class="muted text-sm mt-1">MML / CENEPRED</p>
+            <p class="text-sm mt-2 leading-relaxed">Formación para actuar ante emergencias y apoyar la Gestión del Riesgo de Desastres.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACTO -->
-    <section id="contacto" class="py-24 bg-ink-900 grid-bg relative overflow-hidden">
-      <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl"></div>
-      <div class="relative max-w-3xl mx-auto px-5 text-center">
-        <div class="reveal">
-          <p class="text-brand-400 font-semibold uppercase tracking-widest text-sm mb-2">Contacto</p>
-          <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">¿Trabajamos juntos?</h2>
-          <p class="text-slate-300 mb-10">
-            Si tienes un proyecto geoespacial, de análisis de datos o de gestión territorial, escríbeme.
-          </p>
+    <!-- ============ SOBRE MÍ ============ -->
+    <section id="sobre-mi" class="py-20">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="h2 reveal"><svg class="ico"><use href="#i-user"/></svg>Sobre mí</h2>
 
-          <div class="grid sm:grid-cols-2 gap-4 mb-8">
-            <a href="mailto:fuentesleonm1@gmail.com" class="bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-6 transition">
-              <div class="text-2xl mb-2">✉️</div>
-              <p class="text-slate-400 text-xs uppercase tracking-wider">Correo</p>
-              <p class="text-white font-semibold break-all">fuentesleonm1@gmail.com</p>
-            </a>
-            <a href="tel:+51931551660" class="bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-6 transition">
-              <div class="text-2xl mb-2">📱</div>
-              <p class="text-slate-400 text-xs uppercase tracking-wider">Celular</p>
-              <p class="text-white font-semibold">931 551 660</p>
-            </a>
+        <div class="grid md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-12 items-center max-w-4xl">
+          <div class="reveal space-y-4 leading-relaxed">
+            <p>¡Hola! Soy Miguel Angel Cifuentes León, <span class="code">geógrafo</span> titulado por la UNMSM y estudiante de <span class="code">Ingeniería de Sistemas</span> en la misma universidad. Convierto datos del territorio en decisiones: trabajo con SIG, análisis espacial, Python y bases de datos.</p>
+
+            <p>Mi trabajo tiene dos partes. En gabinete: <span class="code">mapeo y modelado espacial</span> con ArcGIS, ArcGIS Pro y QGIS, procesamiento de imágenes satelitales y gestión de datos con SQL y Excel avanzado. En campo: <span class="code">georreferenciación</span>, supervisión y recojo de datos con KoboToolbox, con <span class="code">licencia de piloto de dron</span> y licencia de conducir A-I para llegar y trabajar con autonomía.</p>
+
+            <p>Mi tesis en la UNMSM modeló <span class="code">rutas óptimas para bicicletas</span> y está publicada en Cybertesis. Hoy refuerzo mi perfil técnico con Python (UNI) para automatizar procesos y conectar el análisis espacial con el desarrollo de sistemas.</p>
+
+            <p>También tengo una larga trayectoria en la ONPE como <span class="code">coordinador y responsable de local de votación</span>, donde aprendí a liderar equipos y a trabajar bajo presión. Soy brigadista comunitario (MML/CENEPRED) y cuento con formación en SSOMA (SENCICO) y Gestión del Riesgo de Desastres, así que la seguridad en campo es parte de mi forma de trabajar.</p>
           </div>
 
-          <div class="flex flex-wrap gap-4 justify-center">
-            <a href="https://wa.me/51931551660?text=Hola%20Miguel%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte."
-               target="_blank" rel="noopener"
-               class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white font-semibold px-7 py-3 rounded-lg transition shadow-lg shadow-brand-500/20">
-              Escribir por WhatsApp
-            </a>
-            <a href="CV-Miguel-Cifuentes.pdf" download
-               class="inline-flex items-center gap-2 border border-white/20 hover:border-brand-400 hover:text-brand-400 text-white font-semibold px-7 py-3 rounded-lg transition">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
-              Descargar CV
-            </a>
+          <div class="reveal flex justify-center md:justify-end">
+            <div class="frame w-52 sm:w-60">
+              <!-- Opcional: sube otra foto como "sobre-mi.jpg". Si no existe, se usa foto.jpg -->
+              <img src="sobre-mi.jpg" alt="Miguel Angel Cifuentes León" class="w-full aspect-[4/5] object-cover"
+                   onerror="if(this.dataset.f){this.style.display='none'}else{this.dataset.f=1;this.src='foto.jpg'}" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section id="contacto" class="py-20">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="h2 reveal"><svg class="ico"><use href="#i-mail"/></svg>Contacto</h2>
+        <div class="reveal max-w-2xl">
+          <p class="leading-relaxed mb-6">¿Tienes un proyecto geoespacial, de análisis de datos o de gestión territorial? Escríbeme y conversamos.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="mailto:fuentesleonm1@gmail.com" class="pill"><svg class="ico"><use href="#i-mail"/></svg>fuentesleonm1@gmail.com</a>
+            <a href="tel:+51931551660" class="pill"><svg class="ico"><use href="#i-phone"/></svg>931 551 660</a>
+            <a href="https://wa.me/51931551660?text=Hola%20Miguel%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte." target="_blank" rel="noopener" class="pill"><svg class="ico"><use href="#i-chat"/></svg>WhatsApp</a>
+            <a href="CV-Miguel-Cifuentes.pdf" download class="pill"><svg class="ico"><use href="#i-file"/></svg>Descargar CV</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="bg-ink-900 border-t border-white/10 py-6 text-center text-sm text-slate-400">
-    © <span id="year"></span> Miguel Angel Cifuentes León · Geógrafo · SIG · Python
+  <footer class="max-w-5xl mx-auto px-6 py-10 flex flex-wrap items-center justify-between gap-4 text-sm">
+    <p class="muted">© <span id="year"></span> Miguel Angel Cifuentes León.</p>
+    <ul class="flex gap-5 title">
+      <li><a href="#inicio" class="hover:underline">Inicio</a></li>
+      <li><a href="https://github.com/cifuentes8" target="_blank" rel="noopener" class="hover:underline">GitHub</a></li>
+      <li><a href="#contacto" class="hover:underline">Contacto</a></li>
+    </ul>
   </footer>
 
   <script>
-    // Menú móvil
-    const btn = document.getElementById('menuBtn');
-    const menu = document.getElementById('mobileMenu');
-    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
-
     // Modo claro / oscuro
-    document.querySelectorAll('.themeBtn').forEach(b => {
-      b.addEventListener('click', () => {
-        const isDark = document.documentElement.classList.toggle('dark');
-        try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
-      });
+    document.getElementById('modoBtn').addEventListener('click', function () {
+      var dark = document.documentElement.classList.toggle('dark');
+      try { localStorage.setItem('modo', dark ? 'dark' : 'light'); } catch (e) {}
     });
 
-    // Animación de aparición al hacer scroll
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    // Aparición al hacer scroll
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
 
-    // Año del pie de página
+    // Resalta en el menú la sección visible
+    var links = document.querySelectorAll('.nav a[data-s]');
+    var secObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) links.forEach(function (a) { a.classList.toggle('active', a.dataset.s === e.target.id); });
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    ['inicio', 'experiencia', 'proyectos', 'formacion', 'sobre-mi'].forEach(function (id) {
+      var s = document.getElementById(id); if (s) secObs.observe(s);
+    });
+
+    // Oculta enlaces que aún no tienen dirección real (href="#")
+    document.querySelectorAll('a[data-needs-link]').forEach(function (a) {
+      if (a.getAttribute('href') === '#') a.style.display = 'none';
+    });
+
+    // Galería: se muestra solo si hay al menos una foto en "trabajos/"
+    window.checkGaleria = function () {
+      var hay = document.querySelectorAll('#galGrid figure').length > 0;
+      document.getElementById('galeria').hidden = !hay;
+      if (hay) document.querySelectorAll('#galGrid .reveal').forEach(function (el) { io.observe(el); });
+    };
+    window.addEventListener('load', checkGaleria);
+
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
