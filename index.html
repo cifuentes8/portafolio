@@ -444,6 +444,53 @@
           </article>
         </div>
 
+        <div class="max-w-3xl">
+          <h3 class="h3">Proyectos de datos y sistemas</h3>
+          <p class="muted text-sm mb-6">Proyectos personales con datos ficticios, que combinan mi experiencia en catastro con programación.</p>
+
+          <article class="proj reveal">
+            <h4>Validador de datos catastrales</h4>
+            <p class="muted text-sm mt-1">Python · pruebas automáticas</p>
+            <div class="flex flex-wrap gap-2 my-3">
+              <span class="chip"><i style="background:#3b82f6"></i>Python</span><span class="chip"><i style="background:#10b981"></i>Calidad de datos</span><span class="chip"><i style="background:#f59e0b"></i>Pruebas unitarias</span>
+            </div>
+            <p class="desc mb-3">Script que revisa una tabla de predios y detecta errores antes de cargarla a un SIG: códigos duplicados, áreas incoherentes, usos inválidos y datos faltantes.</p>
+            <ul class="list text-[.95rem]">
+              <li>Reglas de validación basadas en los errores que corregía en campo (duplicidad, superposición, datos incompletos).</li>
+              <li>13 pruebas automáticas; usa solo la biblioteca estándar de Python.</li>
+            </ul>
+            <a href="https://github.com/cifuentes8/proyectos-datos/tree/main/validador-catastral" target="_blank" rel="noopener" class="pill mt-4"><svg class="ico"><use href="#i-github"/></svg>Ver código</a>
+          </article>
+
+          <article class="proj reveal">
+            <h4>Mapa catastral interactivo</h4>
+            <p class="muted text-sm mt-1">HTML · JavaScript · SVG</p>
+            <div class="flex flex-wrap gap-2 my-3">
+              <span class="chip"><i style="background:#f59e0b"></i>JavaScript</span><span class="chip"><i style="background:#8b5cf6"></i>Visualización</span><span class="chip"><i style="background:#0ea5e9"></i>Catastro urbano</span>
+            </div>
+            <p class="desc mb-3">Mapa de lotes en un solo archivo, sin librerías externas, con búsqueda, filtros y ficha de cada predio. Marca los predios con observaciones del validador.</p>
+            <ul class="list text-[.95rem]">
+              <li>Búsqueda por código o dirección, filtro por uso y coloreado por titulación.</li>
+              <li>Funciona en computadora y celular, con modo claro y oscuro.</li>
+            </ul>
+            <a href="https://github.com/cifuentes8/proyectos-datos/tree/main/mapa-catastral-web" target="_blank" rel="noopener" class="pill mt-4"><svg class="ico"><use href="#i-github"/></svg>Ver código</a>
+          </article>
+
+          <article class="proj reveal">
+            <h4>Base de datos catastral con PostGIS</h4>
+            <p class="muted text-sm mt-1">PostgreSQL · SQL espacial</p>
+            <div class="flex flex-wrap gap-2 my-3">
+              <span class="chip"><i style="background:#2563eb"></i>PostgreSQL</span><span class="chip"><i style="background:#10b981"></i>PostGIS</span><span class="chip"><i style="background:#ef4444"></i>SQL</span>
+            </div>
+            <p class="desc mb-3">Modelo relacional con geometrías y consultas espaciales típicas de catastro.</p>
+            <ul class="list text-[.95rem]">
+              <li>Restricciones de integridad e índice espacial GIST.</li>
+              <li>Consultas de superposición, colindantes, vecino más cercano y resúmenes por manzana.</li>
+            </ul>
+            <a href="https://github.com/cifuentes8/proyectos-datos/tree/main/base-datos-catastral-postgis" target="_blank" rel="noopener" class="pill mt-4"><svg class="ico"><use href="#i-github"/></svg>Ver código</a>
+          </article>
+        </div>
+
         <!-- Galería: aparece sola si subes fotos a la carpeta "trabajos" -->
         <div id="galeria" hidden>
           <h3 class="h3">Galería de trabajos</h3>
